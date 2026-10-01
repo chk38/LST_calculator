@@ -26,14 +26,12 @@ LAMBDA = 10.8
 
 def run_lst_workflow():
 
-    # Make sure the output folder exists
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
     arcpy.env.workspace = output_folder
     arcpy.env.overwriteOutput = True
 
-    # Check out the Spatial Analyst license (required for raster math)
     if arcpy.CheckExtension("Spatial") == "Available":
         arcpy.CheckOutExtension("Spatial")
     else:
@@ -61,7 +59,6 @@ def run_lst_workflow():
     brightness_temp_c = (Float(K2) / bt_kelvin_term) - 273.15
     brightness_temp_c.save(os.path.join(output_folder, "Step2_Brightness_Temp_C.tif"))
 
-    # Keep a Kelvin version too - needed later for the final LST formula
     brightness_temp_k = brightness_temp_c + 273.15
 
     # ------------------------------------------------------------------
@@ -99,7 +96,6 @@ def run_lst_workflow():
     lst_celsius = lst_kelvin - 273.15
     lst_celsius.save(os.path.join(output_folder, "LST_Celsius.tif"))
 
-    # Give back the Spatial Analyst license
     arcpy.CheckInExtension("Spatial")
 
     print("\nDONE! All 5 steps completed successfully.")
