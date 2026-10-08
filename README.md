@@ -6,3 +6,5 @@ Tested and verified the code in both ArcMap 10.8 and ArcGIS Pro.
 *Requirements*
 Make sure Arcpy library is installed in your computer.
 Edit and customize your raster file locations for B4, B5 and B10.
+
+**Most importantly you must have a valid ArcGIS license otherwise the code crashes after step 5**
